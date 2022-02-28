@@ -12,11 +12,39 @@ class Family:
     def set_children(self, child1, child2):
         self.child1, self.child2 = child1, child2
     
-    def get_fittest(self):
-        fittest  = []
-        childs = [self.child1.count_ones(), self.child2.count_ones()].sort()
-        parents = [self.parent1.count_ones(), self.parent1.count_ones()].sort()
-        pass
+    def tournament(self, eval):
+
+        fittest = []
+        # participants = [(self.child1, eval(self.child1), "C"),
+        #                 (self.child2, eval(self.child2), "C"),
+        #                 (self.parent1, eval(self.parent1), "P"),
+        #                 (self.parent2, eval(self.parent2), "P")
+        # ]
+        # participants.sort(key=lambda y: y[1])
+        test = eval(self.child2)
+        childs = [(self.child1, eval(self.child1)), (self.child2, eval(self.child2))]
+        parents = [(self.parent1, eval(self.parent1)), (self.parent2, eval(self.parent2))]
+
+        childs.sort(key=lambda x:x[1])
+        parents.sort(key=lambda x:x[1])
+
+        index_p = 1
+        index_c = 1
+        if (childs[0][1] >= parents[1][1]):
+            return [x[0] for x in childs]
+
+        while(len(fittest) < 2):
+            child_fit = childs[index_c]
+            parent_fit = parents[index_p]
+
+            if(child_fit[1] >= parent_fit[1]):
+                fittest.append(child_fit[0])
+                index_c -=1
+            else:
+                fittest.append(parent_fit[0])
+                index_p -=1
+
+        return fittest
 
 def uniform_crossover(parent1: String, parent2: String):
     idx = random.choice(range(1, STRING_LENGTH))

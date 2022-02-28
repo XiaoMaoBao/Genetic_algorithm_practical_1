@@ -16,18 +16,37 @@ class Population:
     def generate_pop(self):
         poplist = []
         for _ in range(POPULATION_SIZE):
-            poplist.append(self.generate_string())
+            str = self.generate_string()
+            print(str)
+            poplist.append(str)
         return(poplist)
     
-    def createGen(self):
-        self.shuffle()
-        families = self.create_families()
-        #TODO Take best 2 of each family
+    def createGen(self, eval, crossover):
+        newGen =[]
+        #code breaks when shuffle is called
+        #bug?
+        # self.shuffle()
+        families = self.create_families(crossover)
+
+        for family in families:
+            victory = family.tournament(eval)
+
+            newGen.extend(victory)
+        
+        print("new gen")
+        for string in newGen:
+            print(string)
+        self.strings  = newGen
         #TODO Set list as new population
+
 
     def shuffle(self) -> str:
         self.strings = random.shuffle(self.strings)
 
+    def fitness_score(self, eval):
+        return sum(map(lambda x: eval(x), self.strings))
+
+    
     def create_families(self, crossover):
         families = []
         for i in range(int(POPULATION_SIZE/2)):
