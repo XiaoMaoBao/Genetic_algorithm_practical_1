@@ -13,15 +13,8 @@ class Family:
         self.child1, self.child2 = child1, child2
     
     def tournament(self, eval):
-
         fittest = []
-        # participants = [(self.child1, eval(self.child1), "C"),
-        #                 (self.child2, eval(self.child2), "C"),
-        #                 (self.parent1, eval(self.parent1), "P"),
-        #                 (self.parent2, eval(self.parent2), "P")
-        # ]
-        # participants.sort(key=lambda y: y[1])
-        test = eval(self.child2)
+
         childs = [(self.child1, eval(self.child1)), (self.child2, eval(self.child2))]
         parents = [(self.parent1, eval(self.parent1)), (self.parent2, eval(self.parent2))]
 

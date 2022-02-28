@@ -29,15 +29,13 @@ class Population:
         families = self.create_families(crossover)
 
         for family in families:
-            victory = family.tournament(eval)
-
-            newGen.extend(victory)
+            newGen.extend(family.tournament(eval))
         
-        print("new gen")
-        for string in newGen:
-            print(string)
+        # print("new gen")
+        # for string in newGen:
+        #     print(string)
+        
         self.strings  = newGen
-        #TODO Set list as new population
 
 
     def shuffle(self) -> str:
