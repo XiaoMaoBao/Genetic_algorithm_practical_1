@@ -5,7 +5,6 @@ class String:
     def __init__(self, binary_str) -> None:
         self.binary_str = binary_str
 
-
     def count(self, s):
         return self.binary_str.count(s)
 
