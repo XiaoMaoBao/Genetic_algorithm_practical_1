@@ -1,12 +1,13 @@
 from Population import Population
-from Representation import count_ones
+from Representation import count_ones, NonDeceptiveTight, DeceptiveTight
 from Family import two_point_crossover
 
 
 if __name__ == "__main__":
     popu = Population(count_ones, two_point_crossover)
     popu.iterate(iterations=5)
-
+    # popu.createGen(DeceptiveTight,two_point_crossover)
+    # print(popu.fitness_score(DeceptiveTight))
 
 
 
