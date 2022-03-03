@@ -46,7 +46,7 @@ def NonDeceptiveTight(binary_str: string):
     print("The string: ", binary_str)
 
     for index in mapping:
-        substring = binary_str.sliceString((index-4), (index))
+        substring = binary_str.slice((index-4), (index))
         number_ones = substring.count('1')
         print("lb", index-4)
         print("ub", index)
@@ -63,10 +63,37 @@ def NonDeceptiveTight(binary_str: string):
         
 
 def DeceptiveLoose(binary_str: string):
-    pass
+    sumScore = 0
+    for index  in range(1,11):
+        subString = ''
+
+        for mult in [0,10,20,30]:
+            i = (index+mult)
+            subChar = binary_str.slice((i-1),i)
+            subString = subString + subChar
+    
+        tp_score = DeceptiveTP(subString.count('1'))
+
+        sumScore += tp_score
+    return sumScore
+
 
 def NonDeceptiveLoose(binary_str: string):
-    pass
+    sumScore = 0
+    for index  in range(1,11):
+        subString = ''
+
+        for mult in [0,10,20,30]:
+            i = (index+mult)
+            subChar = binary_str.slice((i-1),i)
+            subString = subString + subChar
+    
+        tp_score = NonDeceptiveTP(subString.count('1'))
+
+        sumScore += tp_score
+    return sumScore
+
+
 
 def DeceptiveTP(argument):
     switcher = {
