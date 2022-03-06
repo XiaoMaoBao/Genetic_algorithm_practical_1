@@ -1,6 +1,7 @@
 from audioop import cross
 from Representation import String
 from Family import Family, uniform_crossover, two_point_crossover
+from Data import  Run
 import random
 
 STRING_LENGTH = 40
@@ -10,6 +11,9 @@ class Population:
     def __init__(self, eval, crossover) -> None:
         self.crossover = crossover
         self.eval = eval
+        
+        self.TrackData = Run()
+
 
         self.strings = self.generate_pop()
         self.fitness = self.fitness_score()
@@ -26,7 +30,8 @@ class Population:
             poplist.append(str)
         return(poplist)
     
-    def createGen(self):
+
+    def create_gen(self):
         newGen =[]
         self.shuffle()
         families = self.create_families()
@@ -39,13 +44,23 @@ class Population:
         #     print(string)
         
         self.strings = newGen
-        self.fitness = self.fitness_score()
+        self.fitness = self.fitness_score()        
+        self.check_optimum()
+        self.TrackData.increment_generations()
+
+        
+
+    def check_optimum(self):
+        for x in self.strings:
+            if (self.eval(x) == STRING_LENGTH):
+                self.TrackData.run = True
 
 
     def shuffle(self) -> str:
         self.strings = random.sample(self.strings, len(self.strings))
 
     def fitness_score(self):
+        self.TrackData.increment_fitness_calls(POPULATION_SIZE)
         return sum(map(lambda x: self.eval(x), self.strings))
 
     def create_families(self):
@@ -59,5 +74,5 @@ class Population:
 
     def iterate(self, iterations: int):
         for i in range(iterations):
-            self.createGen()
+            self.create_gen()
             print(f"Generation {i+1} has fitness {self.fitness}")

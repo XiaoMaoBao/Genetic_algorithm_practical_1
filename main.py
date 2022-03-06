@@ -1,14 +1,45 @@
+from cProfile import run
 from Population import Population
 from Representation import count_ones, NonDeceptiveTight, DeceptiveTight, DeceptiveLoose, NonDeceptiveLoose
 from Family import two_point_crossover
+from Data import DataContainer, Run
+import pandas as pd  
+import csv
+from time import process_time
 
 
 if __name__ == "__main__":
+    #TODO implement stopwatch
+        #t1_start = process_time() 
+        #t1_stop = process_time()
+    #TODO implement list to csv
+    #TODO create bisection function
+
+
+
     popu = Population(NonDeceptiveLoose, two_point_crossover)
     popu.iterate(iterations=5)
     # popu.createGen(DeceptiveTight,two_point_crossover)
     # print(popu.fitness_score(DeceptiveTight))
 
+
+
+
+
+
+   # filename = 'items.csv'
+    # items = [Run(), Run(), Run()]
+    # try:
+    #     with open(filename, 'w', newline='') as f:
+    #         writer = csv.writer(f)
+    #         writer.writerow(["calls", "gen", "time"])
+
+    #         for item in items:
+    #             writer.writerow([item.fitness_eval_calls, item.generations, item.running_time])
+    # except BaseException as e:
+    #     print('BaseException:', filename)
+    # else:
+    #     print('Data has been loaded successfully !')
 
 
 #while i <= 20
@@ -39,8 +70,59 @@ if __name__ == "__main__":
 # 
 # 
 # 
-# 
-# 
+#160+320 = 480/2
+#midpoint = 240
+#320 + 240 = 560/2
+#midpoint 280
+#240 + 280 = 520/2
+#midpoint 260
+#280 + 260 = 540/2
+#midpoint = 270
+#260 + 270 = 530/2
+#midpoint 265
+#270  +265 = 535/2
+#a  b
+#160    320
+#240    320
+#240    280
+#260    280
+#260    270
+#270    275
 
+
+
+
+#10,20,40,80,160,320,640,1280
+#320 found
+#diff(160,320) =160/2 = 80
+#new 320-80 = 240
+#diff(320,240) = 80/2 = 40
+#new 320 - 40 = 280
+#diff(240,280) =40/2 20
+#new 280 -20 = 260
+#diff(280,260) = 20/2
+#new 280-10  =270
+#160 - 320= 240
+#240 - 320 = 280
+#280 - 320 = 
+
+#dataclass 
+#String experiment
+#The population size N
+#for each run of N
+#the run number
+#The number of fitness evaluation cals
+#The number of new generations
+#The running time
+
+
+#dataclass object
+#string experiment name
+#Fixed var N = 320
+#array of a run
+#a run tracks
+#   -The number of fitness evaluation calls
+#   -The number of new generations
+#   -The running time
 
 
