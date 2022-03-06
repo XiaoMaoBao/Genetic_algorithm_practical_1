@@ -14,7 +14,6 @@ class Population:
         
         self.TrackData = Run()
 
-
         self.strings = self.generate_pop()
         self.fitness = self.fitness_score()
         print(f"Initial population has fitness: {self.fitness}")

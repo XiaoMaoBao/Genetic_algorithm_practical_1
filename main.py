@@ -4,7 +4,6 @@ from Representation import count_ones, NonDeceptiveTight, DeceptiveTight, Decept
 from Family import two_point_crossover
 from Data import DataContainer, Run
 import pandas as pd  
-import csv
 from time import process_time
 
 
@@ -24,22 +23,6 @@ if __name__ == "__main__":
 
 
 
-
-
-
-   # filename = 'items.csv'
-    # items = [Run(), Run(), Run()]
-    # try:
-    #     with open(filename, 'w', newline='') as f:
-    #         writer = csv.writer(f)
-    #         writer.writerow(["calls", "gen", "time"])
-
-    #         for item in items:
-    #             writer.writerow([item.fitness_eval_calls, item.generations, item.running_time])
-    # except BaseException as e:
-    #     print('BaseException:', filename)
-    # else:
-    #     print('Data has been loaded successfully !')
 
 
 #while i <= 20
