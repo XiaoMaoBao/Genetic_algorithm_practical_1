@@ -22,6 +22,88 @@ if __name__ == "__main__":
     # print(popu.fitness_score(DeceptiveTight))
 
 
+#def experiment(crossover, eval):
+#high, low
+#n' = 0 
+#n = 0
+#runs = []
+#success' = False
+#while(n <= 1280 && !success')
+#    (success, run') =  GA(n, crossover, eval)
+#   if success == true
+#       success' = success
+#       n' = n
+#       runs.append(run')
+#   n = n*2
+#       
+#
+#if n' != 0:
+#   extra check if n' == 10,20 then return (n', run')
+#
+#   high = n'
+#   low = n'/2
+#   bi_number = bisection(low, high)
+#   
+#   tempRun = []
+#   While(bi_number % 10 == 0):
+#       bi_number = bisection(low,high)
+#       fail_count = 0
+#       for _ range(20):
+#               (success,run') = GA (bi_number)
+#               tempRun.append(run')
+#
+#               if(!success):
+#                  fail_count +=1
+#               if(fail_count >1):
+#                   low = bi_number
+#                   tempRun = []
+#                   break
+#               
+#       if(failcount<2):     
+#           n', high = bi_number
+#           runs = tempRun 
+#           
+#    
+#else: 
+#   return (n', None)
+#   
+#return (n', runs)
+#
+#
+
+#def GA(n, crossover, eval)
+#run = Run()
+#previous_fitness = 0 
+#no_improvement = 0
+#popu = GA(n, crossover, eval)
+#
+#while(no_improvement < 5)
+#   run.starttimer
+#   popu.new generation
+#   run.endtimer
+#   (currentfitness, optimum)= popu.optimum 
+#
+#   run.totalEval = popu.eval_calls
+#   run.cpu = popu.gen_time
+#
+#   if(optimum):
+#       return (true, run)  
+#  
+#   if(previous_fitness => currentfitness):
+#       no_improvement+=1
+#    else: 
+#       previous_fitness = currentfitness  
+#
+#   
+#return (False, None)
+
+#def bisection(lb, ub):
+#return int((lb+ub)/2)
+#
+
+
+
+
 #for N in {10, 20, 40, 80, 160, 320, 640, 1280}:
 #   Generate(N)
 #   while x < 5:   
