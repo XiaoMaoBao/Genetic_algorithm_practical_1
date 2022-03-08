@@ -5,13 +5,14 @@ from Data import  Run
 import random
 
 STRING_LENGTH = 40
-POPULATION_SIZE = 20
+
 
 class Population:
-    def __init__(self, eval, crossover) -> None:
+    def __init__(self, eval, crossover, population_size) -> None:
         self.crossover = crossover
         self.eval = eval
-        
+        self.size = population_size
+
         self.TrackData = Run()
 
         self.strings = self.generate_pop()
@@ -23,7 +24,7 @@ class Population:
     
     def generate_pop(self):
         poplist = []
-        for _ in range(POPULATION_SIZE):
+        for _ in range(self.size):
             str = self.generate_string()
             print(str)
             poplist.append(str)
@@ -47,24 +48,21 @@ class Population:
         self.check_optimum()
         self.TrackData.increment_generations()
 
-        
-
     def check_optimum(self):
         for x in self.strings:
             if (self.eval(x) == STRING_LENGTH):
                 self.TrackData.run = True
 
-
     def shuffle(self) -> str:
         self.strings = random.sample(self.strings, len(self.strings))
 
     def fitness_score(self):
-        self.TrackData.increment_fitness_calls(POPULATION_SIZE)
+        self.TrackData.increment_fitness_calls(self)
         return sum(map(lambda x: self.eval(x), self.strings))
 
     def create_families(self):
         families = []
-        for i in range(int(POPULATION_SIZE/2)):
+        for i in range(int(self.size/2)):
             family = Family(self.strings[i], self.strings[i+1])
             family.child1, family.child2 = self.crossover(family.parent1, family.parent2)
             families.append(family)

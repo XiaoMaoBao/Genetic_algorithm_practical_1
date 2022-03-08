@@ -22,90 +22,40 @@ if __name__ == "__main__":
     # print(popu.fitness_score(DeceptiveTight))
 
 
+#for N in {10, 20, 40, 80, 160, 320, 640, 1280}:
+#   Generate(N)
+#   while x < 5:   
+#       Do fitness on each of the strings in popu
+#       if string fitness == 40
+#           Break: 
+#       if totalfitness == previous totalfitness
+#           x++
+#   if x == 5:
+#       Break: #Fail
+#   if N > 10:
+#       Succesfull then Bisection Search(N)
+#       Return minimal population size
+#   else
+#       return 10
+#R Return Fail""
+x#   x = 0
+    #   previous ttotalfitness = 0
+    #       previous totalprevious totalfitness = totalfitnessCalc Fitness of Poppuu, and PIndiviualpppppppppp
 
 
-
-#while i <= 20
-# n =10 
-# do GA(n)
-#   in GA(n) if the generatio
-# check opt: yes = stop, increase i and do GA (n) again, no = increase n'= n*2, i = 1, do GA(n')
-# if i == 19: GA with popu N is success 
 # 
-#
 
-
-# iterations = 20
-# for every iteration:
-#   create population with size 10
-#   Search for global optimum:
-#       If found: return
-#       If not found: double population size and search again
-#   
-# 
-
-#28
-#ing0 stop Fa toil 
-#sed rn keeei  iepf succesful if N>= 1 go
-#u#  do run see if ccesfull, if not dubble sizeicfGenerate population with size 10or i in range(20):
-#  
-# 
-# 
-# 
-# 
-#160+320 = 480/2
-#midpoint = 240
-#320 + 240 = 560/2
-#midpoint 280
-#240 + 280 = 520/2
-#midpoint 260
-#280 + 260 = 540/2
-#midpoint = 270
-#260 + 270 = 530/2
-#midpoint 265
-#270  +265 = 535/2
-#a  b
-#160    320
-#240    320
-#240    280
-#260    280
-#260    270
-#270    275
-
-
-
-
-#10,20,40,80,160,320,640,1280
-#320 found
-#diff(160,320) =160/2 = 80
-#new 320-80 = 240
-#diff(320,240) = 80/2 = 40
-#new 320 - 40 = 280
-#diff(240,280) =40/2 20
-#new 280 -20 = 260
-#diff(280,260) = 20/2
-#new 280-10  =270
-#160 - 320= 240
-#240 - 320 = 280
-#280 - 320 = 
-
-#dataclass 
-#String experiment
-#The population size N
-#for each run of N
-#the run number
-#The number of fitness evaluation cals
-#The number of new generations
-#The running time
-
-
-#dataclass object
-#string experiment name
-#Fixed var N = 320
-#array of a run
-#a run tracks
-#   -The number of fitness evaluation calls
-#   -The number of new generations
-#   -The running time
-
-
+middlebound
+#   if x == 5:
+#       Break: #Fail
+#   if N > 10:
+#       Succesfull then Bisection Search(N)
+#       Return minimal population sizeB
+isection Search N,lowhighN/2, NlowNhighNmidNmid()Nmid, Nhighe
+lselow, Nmid
+#    for z in 20 range()20_)                                            
+    #       FAILCOUNTER++
+#   FailAILCOUNTER = 0
+#       If FAILCOUNTER == 2
+#           Break:FAILCOUNTER == 2
+if x == 5#           
