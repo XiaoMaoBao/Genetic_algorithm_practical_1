@@ -1,3 +1,4 @@
+from ast import Not
 import csv
 from time import process_time
 import Population
@@ -15,11 +16,20 @@ class Experiment:
 
 
 def export_to_csv(name,data):
-    # try:
-    #     with open(name, 'w', newline='') as f:
-    #         writer = csv.writer(f)
-    #         writer.writerow(["generatio_number", "fitness_call", "cpu_time"])
-    #         for run in data:
+    try:
+        with open(name, 'w', newline='') as f:
+            writer = csv.writer(f)
+            writer.writerow(["generatio_number", "fitness_call", "cpu_time"])
+            for run in data:
+                if run is not None:
+                    writer.writerow([run.generations, run.fitness_eval_calls, run.cpu_time])
+    except BaseException as e:
+        print('BaseException:', name)
+    else:
+        print('Data has been successfully saved!')
+
+
+
 
 
     #filename = 'items.csv'

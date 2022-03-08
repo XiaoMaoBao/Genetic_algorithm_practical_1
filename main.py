@@ -3,7 +3,7 @@ from cProfile import run
 from Population import Population
 from Representation import count_ones, NonDeceptiveTight, DeceptiveTight, DeceptiveLoose, NonDeceptiveLoose
 from Family import two_point_crossover, uniform_crossover
-from Data import Run
+from Data import Run, export_to_csv
 
 
 
@@ -112,6 +112,8 @@ def bisection(lb,ub):
 
 if __name__ == "__main__":
     (n, data) = experiment(uniform_crossover,count_ones, False)
+    filename= "exp_1_" + str(n)
+    export_to_csv(filename, data)
     print(n)
 
 
