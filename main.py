@@ -2,7 +2,7 @@ from audioop import cross
 from cProfile import run
 from Population import Population
 from Representation import count_ones, NonDeceptiveTight, DeceptiveTight, DeceptiveLoose, NonDeceptiveLoose
-from Family import two_point_crossover
+from Family import two_point_crossover, uniform_crossover
 from Data import Run
 
 
@@ -12,14 +12,14 @@ from Data import Run
     # popu.createGen(DeceptiveTight,two_point_crossover)
     # print(popu.fitness_score(DeceptiveTight))
 
-def experiment(crossover, eval):
+def experiment(crossover, eval, trap):
     n_prime = 0
     n = 10
     runs = []
     success_prime = False
 
     while((n <= 1280) and (not success_prime)):
-        (success, run) = GA(n, crossover, eval)
+        (success, run) = GA(n, crossover, eval, trap)
         if (success):
             success_prime = success
             n_prime = n
@@ -38,10 +38,11 @@ def experiment(crossover, eval):
 
         temp_runs = []
         while(mid % 10 == 0):
+            temp_runs = []
             mid = bisection(low,high)
             fail_count = 0
             for index in range(20):
-                (_success, _run) = GA(mid, crossover, eval)
+                (_success, _run) = GA(mid, crossover, eval,trap)
                 temp_runs.append(_run)
 
                 if not _success:
@@ -51,10 +52,11 @@ def experiment(crossover, eval):
                     temp_runs = []
                     break                    
 
-            if fail_count < 2:
+            if fail_count < 2 and mid % 10 == 0:
                 n_prime = mid
                 high = mid
                 runs = temp_runs
+                temp_runs = []
     else:
         return (n_prime, None)
 
@@ -62,21 +64,34 @@ def experiment(crossover, eval):
 
 
 
+#counting ones
+#1 gen: 
+#40 parents
+#40 children
+#------tournament------
+# van de 80 haal je 40 
+#
+# 40 check voor een opt + fitness score
+# 
 
-def GA(n, crossover, eval):
+
+def GA(n, crossover, eval, trap):
     run = Run()
     previous_fitness = 0
     no_improvement = 0
     popu = Population(eval, crossover, n)
-    
+    run.popu_size = n
     while(no_improvement < 5):
         run.startTimer()
         popu.create_gen()
         run.stopTimer()
 
         (current_fitness, opt) = popu.check_optimum()
-        run.fitness_eval_calls = popu.eval_calls
-        popu.reset_fitness_calls()
+        if trap:
+            run.fitness_eval_calls +=800
+        else:
+            run.fitness_eval_calls += 80
+
         run.increment_generations()
 
         if(opt):
@@ -96,7 +111,8 @@ def bisection(lb,ub):
 
 
 if __name__ == "__main__":
-    (n, data) = experiment(two_point_crossover,count_ones)
+    (n, data) = experiment(uniform_crossover,count_ones, False)
+    print(n)
 
 
 

@@ -15,26 +15,26 @@ class Family:
     def tournament(self, eval):
         fittest = []
 
-        childs = [(self.child1, eval(self.child1)), (self.child2, eval(self.child2))]
-        parents = [(self.parent1, eval(self.parent1)), (self.parent2, eval(self.parent2))]
+        childs = [self.child1, self.child2]
+        parents = [self.parent1, self.parent2]
 
-        childs.sort(key=lambda x:x[1])
-        parents.sort(key=lambda x:x[1])
+        childs.sort(key=lambda x:x.fitness_score)
+        parents.sort(key=lambda x:x.fitness_score)
 
         index_p = 1
         index_c = 1
-        if (childs[0][1] >= parents[1][1]):
-            return [x[0] for x in childs]
+        if childs[0].fitness_score >= parents[1].fitness_score:
+            return childs
 
         while(len(fittest) < 2):
             child_fit = childs[index_c]
             parent_fit = parents[index_p]
 
-            if(child_fit[1] >= parent_fit[1]):
-                fittest.append(child_fit[0])
+            if(child_fit.fitness_score >= parent_fit.fitness_score):
+                fittest.append(child_fit)
                 index_c -=1
             else:
-                fittest.append(parent_fit[0])
+                fittest.append(parent_fit)
                 index_p -=1
 
         return fittest

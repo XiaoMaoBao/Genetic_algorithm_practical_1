@@ -12,7 +12,6 @@ class Population:
         self.crossover = crossover
         self.eval = eval
         self.size = population_size
-        self.eval_calls = 0
 
         self.strings = self.generate_pop()
         self.fitness = self.fitness_score()
@@ -25,6 +24,7 @@ class Population:
         poplist = []
         for _ in range(self.size):
             str = self.generate_string()
+            str.fitness_score = self.eval(str)
             print(str)
             poplist.append(str)
         return(poplist)
@@ -45,35 +45,29 @@ class Population:
         self.strings = newGen
         self.fitness = self.fitness_score()        
 
-    def reset_fitness_calls(self):
-        self.eval_calls= 0
-
-
     def check_optimum(self):
-        score_sum = 0
         opt = False
         for x in self.strings:
-            fitness = self.eval(x)
-            score_sum += fitness
-            if (self.eval(x) == STRING_LENGTH):
+            if x.fitness_score == STRING_LENGTH:
                 opt = True
 
-        return (score_sum, opt)
+        return (self.fitness, opt)
 
     def shuffle(self) -> str:
         self.strings = random.sample(self.strings, len(self.strings))
 
-
-
     def fitness_score(self):
-        self.eval_calls +=1
-        return sum(map(lambda x: self.eval(x), self.strings))
+        return sum(map(lambda x: x.fitness_score, self.strings))
 
     def create_families(self):
         families = []
         for i in range(int(self.size/2)):
             family = Family(self.strings[i], self.strings[i+1])
             family.child1, family.child2 = self.crossover(family.parent1, family.parent2)
+
+            family.child1.fitness_score = self.eval(family.child1)
+            family.child2.fitness_score = self.eval(family.child2)
+
             families.append(family)
             i = i+1
         return families

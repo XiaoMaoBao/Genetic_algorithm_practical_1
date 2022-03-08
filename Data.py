@@ -13,8 +13,30 @@ class Experiment:
         population.iterate()
         pass
 
-    def export_to_csv():
-        pass
+
+def export_to_csv(name,data):
+    # try:
+    #     with open(name, 'w', newline='') as f:
+    #         writer = csv.writer(f)
+    #         writer.writerow(["generatio_number", "fitness_call", "cpu_time"])
+    #         for run in data:
+
+
+    #filename = 'items.csv'
+# items = [Run(), Run(), Run()]
+# try:
+#     with open(filename, 'w', newline='') as f:
+#         writer = csv.writer(f)
+#         writer.writerow(["calls", "gen", "time"])
+
+#         for item in items:
+#             writer.writerow([item.fitness_eval_calls, item.generations, item.running_time])
+# except BaseException as e:
+#     print('BaseException:', filename)
+# else:
+#     print('Data has been loaded successfully !')
+
+    pass
 
 
 #for N in {10, 20, 40, 80, 160, 320, 640, 1280}:
@@ -39,9 +61,6 @@ class Experiment:
 
 
 
-
-
-
 class Run:
     def __init__(self) -> None:
         self.fitness_eval_calls = 0
@@ -50,6 +69,7 @@ class Run:
         self.timer_start = 0
         self.timer_stop = 0
         self.cpu_time =0
+        self.popu_size = 0
         
     def increment_fitness_calls(self):
         # in one generation two fitness call for the parents 
