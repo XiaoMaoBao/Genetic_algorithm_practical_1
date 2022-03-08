@@ -63,18 +63,6 @@ def experiment(crossover, eval, trap):
     return (n_prime, runs)
 
 
-
-#counting ones
-#1 gen: 
-#40 parents
-#40 children
-#------tournament------
-# van de 80 haal je 40 
-#
-# 40 check voor een opt + fitness score
-# 
-
-
 def GA(n, crossover, eval, trap):
     run = Run()
     previous_fitness = 0
@@ -107,6 +95,14 @@ def GA(n, crossover, eval, trap):
 
 def bisection(lb,ub):
     return int((lb+ub)/2)
+
+def optimize_experiment(crossover, eval):
+    n = 200
+
+
+
+    
+    pass
 
 
 

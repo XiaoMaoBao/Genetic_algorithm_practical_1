@@ -8,6 +8,8 @@ class Experiment:
         self.optimal_pop_size = 0 #found by bisection
         self.current_pop_size = 10
         self.runs = []
+        
+
 
     def run_experiment(self, fitness_function, crossover_function):
         population = Population(fitness_function, crossover_function, self.current_pop_size)
@@ -69,6 +71,29 @@ def export_to_csv(name,data):
     #   previous ttotalfitness = 0
     #       previous totalprevious totalfitness = totalfitnessCalc Fitness of Poppuu, and PIndiviualpppppppppp
 
+class Generation:
+    def __init__(self) -> None:
+        self.prop = 0
+        self.gen = 0
+        self.error_selection = 0
+        self.correct_selection = 0
+
+        self.schemata_1 = 0
+        self.schemata_2 = 0
+
+        self.schemata_1_std = 0
+        self.schemata_2_std = 0
+
+        self.schemata_1_avg = 0
+        self.schemata_2_avg = 0
+        
+
+class GenerationContainer:
+        def __init__(self) -> None:
+            self.gens = [Generation()]
+            self.current_gen = 0
+
+
 
 
 class Run:
@@ -80,6 +105,7 @@ class Run:
         self.timer_stop = 0
         self.cpu_time =0
         self.popu_size = 0
+        self.gens = []
         
     def increment_fitness_calls(self):
         # in one generation two fitness call for the parents 
