@@ -31,21 +31,21 @@ def count_ones(binary_str: String):
 def DeceptiveTight(binary_str: string):
     sumScore = 0
     mapping = [x*4 for x in range(1,11)]
-    print("The string: ", binary_str)
+    #print("The string: ", binary_str)
 
     for index in mapping:
         substring = binary_str.slice((index-4), (index))
         number_ones = substring.count('1')
-        print("lb", index-4)
-        print("ub", index)
+        #print("lb", index-4)
+        #print("ub", index)
 
         tp_score = DeceptiveTP(number_ones)
 
         sumScore += tp_score
-        print("Substring: ", substring)
-        print("Number ones: ", number_ones)
-        print("NonDeceptive TP score:", tp_score)
-    print("Sum score: ",sumScore)
+        #print("Substring: ", substring)
+        #print("Number ones: ", number_ones)
+        #print("NonDeceptive TP score:", tp_score)
+    #print("Sum score: ",sumScore)
 
     return sumScore
         
@@ -53,21 +53,21 @@ def DeceptiveTight(binary_str: string):
 def NonDeceptiveTight(binary_str: string):
     sumScore = 0
     mapping = [x*4 for x in range(1,11)]
-    print("The string: ", binary_str)
+    #print("The string: ", binary_str)
 
     for index in mapping:
         substring = binary_str.slice((index-4), (index))
         number_ones = substring.count('1')
-        print("lb", index-4)
-        print("ub", index)
+        #print("lb", index-4)
+        #print("ub", index)
 
         tp_score = NonDeceptiveTP(number_ones)
 
         sumScore += tp_score
-        print("Substring: ", substring)
-        print("Number ones: ", number_ones)
-        print("NonDeceptive TP score:", tp_score)
-    print("Sum score: ",sumScore)
+        #print("Substring: ", substring)
+        #print("Number ones: ", number_ones)
+        #print("NonDeceptive TP score:", tp_score)
+    #print("Sum score: ",sumScore)
 
     return sumScore
         
