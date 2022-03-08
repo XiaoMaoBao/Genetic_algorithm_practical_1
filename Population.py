@@ -63,6 +63,8 @@ class Population:
     def shuffle(self) -> str:
         self.strings = random.sample(self.strings, len(self.strings))
 
+
+
     def fitness_score(self):
         self.eval_calls +=1
         return sum(map(lambda x: self.eval(x), self.strings))

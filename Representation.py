@@ -14,9 +14,18 @@ class String:
     def __repr__(self) -> str:
         return self.binary_str
 
+
+
 def count_ones(binary_str: String):
     return binary_str.count('1')
 
+#counting ones eval
+#
+
+
+
+#deceptive trap function *1
+#
 
 def DeceptiveTight(binary_str: string):
     sumScore = 0

@@ -24,6 +24,7 @@ def experiment(crossover, eval):
             success_prime = success
             n_prime = n
             runs.append(run)
+        
         n = n*2
 
 
@@ -39,8 +40,8 @@ def experiment(crossover, eval):
         while(mid % 10 == 0):
             mid = bisection(low,high)
             fail_count = 0
-            for _ in range(20):
-                (_success, _run) = GA(crossover, eval, mid)
+            for index in range(20):
+                (_success, _run) = GA(mid, crossover, eval)
                 temp_runs.append(_run)
 
                 if not _success:
@@ -51,7 +52,8 @@ def experiment(crossover, eval):
                     break                    
 
             if fail_count < 2:
-                n_prime, high = mid
+                n_prime = mid
+                high = mid
                 runs = temp_runs
     else:
         return (n_prime, None)
@@ -68,13 +70,13 @@ def GA(n, crossover, eval):
     popu = Population(eval, crossover, n)
     
     while(no_improvement < 5):
-        popu.reset_fitness_calls()
         run.startTimer()
         popu.create_gen()
         run.stopTimer()
 
         (current_fitness, opt) = popu.check_optimum()
         run.fitness_eval_calls = popu.eval_calls
+        popu.reset_fitness_calls()
         run.increment_generations()
 
         if(opt):
