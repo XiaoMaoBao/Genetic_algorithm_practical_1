@@ -33,7 +33,7 @@ class Experiment:
 #   else
 #       return 10
 #R Return Fail""
-x#   x = 0
+#   x = 0
     #   previous ttotalfitness = 0
     #       previous totalprevious totalfitness = totalfitnessCalc Fitness of Poppuu, and PIndiviualpppppppppp
 
@@ -69,5 +69,5 @@ class Run:
 
     def stopTimer(self):
         self.timer_stop = process_time()
-        self.cpu_time = abs(self.timetimer_start - self.timer_stop)
+        self.cpu_time = abs(self.timer_start - self.timer_stop)
     

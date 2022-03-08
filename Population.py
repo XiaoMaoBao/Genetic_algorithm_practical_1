@@ -12,8 +12,7 @@ class Population:
         self.crossover = crossover
         self.eval = eval
         self.size = population_size
-
-        self.TrackData = Run()
+        self.eval_calls = 0
 
         self.strings = self.generate_pop()
         self.fitness = self.fitness_score()
@@ -45,19 +44,27 @@ class Population:
         
         self.strings = newGen
         self.fitness = self.fitness_score()        
-        self.check_optimum()
-        self.TrackData.increment_generations()
+
+    def reset_fitness_calls(self):
+        self.eval_calls= 0
+
 
     def check_optimum(self):
+        score_sum = 0
+        opt = False
         for x in self.strings:
+            fitness = self.eval(x)
+            score_sum += fitness
             if (self.eval(x) == STRING_LENGTH):
-                self.TrackData.run = True
+                opt = True
+
+        return (score_sum, opt)
 
     def shuffle(self) -> str:
         self.strings = random.sample(self.strings, len(self.strings))
 
     def fitness_score(self):
-        self.TrackData.increment_fitness_calls(self)
+        self.eval_calls +=1
         return sum(map(lambda x: self.eval(x), self.strings))
 
     def create_families(self):
