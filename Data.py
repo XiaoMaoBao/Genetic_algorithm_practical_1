@@ -32,54 +32,37 @@ def export_to_csv(name,data):
 
 
 
+def export_optimizer_to_csv(name, data, optimizer):
+    filename = name + "_" + str(data.cpu_time) + "_" + str(data.fitness_eval_calls)
+    index = 0
+    try:
+        with open(filename, 'w', newline='') as f:
+            writer = csv.writer(f)
+            writer.writerow(["generation", "prop", "correction_selection", "error_selection", "schemata_1_count", "schemata_1_avg_fitness", "schemata_1_std", "schemata_0_count", "schemata_0_avg_fitness", "schemata_0_std" ])
+            for opt in optimizer.gens:
+                writer.writerow([index, opt.prop , opt.correct_selection, opt.error_selection, opt.schemata_1_count, opt.schemata_1_avg, opt.schemata_1_std, opt.schemata_2_count, opt.schemata_2_avg, opt.schemata_2_std])
+                index+=1
+    except BaseException as e:
+        print('BaseException:', filename)
+    else:
+        print('Data has been successfully saved!')
 
+       
 
-    #filename = 'items.csv'
-# items = [Run(), Run(), Run()]
-# try:
-#     with open(filename, 'w', newline='') as f:
-#         writer = csv.writer(f)
-#         writer.writerow(["calls", "gen", "time"])
-
-#         for item in items:
-#             writer.writerow([item.fitness_eval_calls, item.generations, item.running_time])
-# except BaseException as e:
-#     print('BaseException:', filename)
-# else:
-#     print('Data has been loaded successfully !')
-
-    pass
-
-
-#for N in {10, 20, 40, 80, 160, 320, 640, 1280}:
-#   Generate(N)
-#   while x < 5:   
-#       Do fitness on each of the strings in popu
-#       if string fitness == 40
-#           Break: 
-#       if totalfitness == previous totalfitness
-#           x++
-#   if x == 5:
-#       Break: #Fail
-#   if N > 10:
-#       Succesfull then Bisection Search(N)
-#       Return minimal population size
-#   else
-#       return 10
-#R Return Fail""
-#   x = 0
-    #   previous ttotalfitness = 0
-    #       previous totalprevious totalfitness = totalfitnessCalc Fitness of Poppuu, and PIndiviualpppppppppp
 
 class Generation:
     def __init__(self) -> None:
         self.prop = 0
-        self.gen = 0
         self.error_selection = 0
         self.correct_selection = 0
 
-        self.schemata_1 = 0
-        self.schemata_2 = 0
+
+        self.schemata_1_strings = []
+        self.schemata_2_strings = []
+
+
+        self.schemata_1_count = 0
+        self.schemata_2_count = 0
 
         self.schemata_1_std = 0
         self.schemata_2_std = 0
@@ -92,6 +75,10 @@ class GenerationContainer:
         def __init__(self) -> None:
             self.gens = [Generation()]
             self.current_gen = 0
+        
+        def increment_generation(self):
+            self.gens.append(Generation())
+            self.current_gen +=1
 
 
 
