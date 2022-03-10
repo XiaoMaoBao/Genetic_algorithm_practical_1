@@ -144,19 +144,19 @@ def optimize_experiment(crossover, trap = False):
 
 
 if __name__ == "__main__":
-    # (data_run, optimizer, flag) = optimize_experiment(uniform_crossover)
-    # export_optimizer_to_csv("Optimizer_U_counting_ones", data_run, optimizer)
+    (data_run, optimizer, flag) = optimize_experiment(uniform_crossover)
+    export_optimizer_to_csv("Optimizer_U_counting_ones", data_run, optimizer)
 
 
-    # (data_run, optimizer, flag) = optimize_experiment(two_point_crossover)
-    # export_optimizer_to_csv("Optimizer_T_counting_ones", data_run, optimizer)
+    (data_run, optimizer, flag) = optimize_experiment(two_point_crossover)
+    export_optimizer_to_csv("Optimizer_T_counting_ones", data_run, optimizer)
 
-    # (n, data) = experiment(uniform_crossover,count_ones, False)
-    # filename= "exp_1_U" + str(n)
-    # export_to_csv(filename, data)
-    # (n, data) = experiment(two_point_crossover,count_ones, False)
-    # filename= "exp_1_T" + str(n)
-    # export_to_csv(filename, data)
+    (n, data) = experiment(uniform_crossover,count_ones, False)
+    filename= "exp_1_U" + str(n)
+    export_to_csv(filename, data)
+    (n, data) = experiment(two_point_crossover,count_ones, False)
+    filename= "exp_1_T" + str(n)
+    export_to_csv(filename, data)
 
     (n, data) = experiment(uniform_crossover, DeceptiveTight, False)
     filename= "exp_2_U" + str(n)
@@ -165,26 +165,26 @@ if __name__ == "__main__":
     filename= "exp_2_T" + str(n)
     export_to_csv(filename, data)
 
-    # (n, data) = experiment(uniform_crossover,NonDeceptiveTight, False)
-    # filename= "exp_3_U" + str(n)
-    # export_to_csv(filename, data)
-    # (n, data) = experiment(two_point_crossover,NonDeceptiveTight, False)
-    # filename= "exp_3_T" + str(n)
-    # export_to_csv(filename, data)
+    (n, data) = experiment(uniform_crossover,NonDeceptiveTight, False)
+    filename= "exp_3_U" + str(n)
+    export_to_csv(filename, data)
+    (n, data) = experiment(two_point_crossover,NonDeceptiveTight, False)
+    filename= "exp_3_T" + str(n)
+    export_to_csv(filename, data)
 
-    # (n, data) = experiment(uniform_crossover,DeceptiveLoose, False)
-    # filename= "exp_4_U" + str(n)
-    # export_to_csv(filename, data)
-    # (n, data) = experiment(two_point_crossover,DeceptiveLoose, False)
-    # filename= "exp_4_T" + str(n)
-    # export_to_csv(filename, data)
+    (n, data) = experiment(uniform_crossover,DeceptiveLoose, False)
+    filename= "exp_4_U" + str(n)
+    export_to_csv(filename, data)
+    (n, data) = experiment(two_point_crossover,DeceptiveLoose, False)
+    filename= "exp_4_T" + str(n)
+    export_to_csv(filename, data)
 
-    # (n, data) = experiment(uniform_crossover,NonDeceptiveLoose, False)
-    # filename= "exp_5_U" + str(n)
-    # export_to_csv(filename, data)
-    # (n, data) = experiment(two_point_crossover,NonDeceptiveLoose, False)
-    # filename= "exp_5_T" + str(n)
-    # export_to_csv(filename, data)
+    (n, data) = experiment(uniform_crossover,NonDeceptiveLoose, False)
+    filename= "exp_5_U" + str(n)
+    export_to_csv(filename, data)
+    (n, data) = experiment(two_point_crossover,NonDeceptiveLoose, False)
+    filename= "exp_5_T" + str(n)
+    export_to_csv(filename, data)
 
     
 
