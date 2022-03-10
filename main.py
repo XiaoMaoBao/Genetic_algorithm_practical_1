@@ -20,13 +20,24 @@ def experiment(crossover, eval, trap):
     success_prime = False
 
     while((n <= 1280) and (not success_prime)):
-        (success, run) = GA(n, crossover, eval, trap)
-        if (success):
+        fails = 0
+        for _ in range(20):
+            
+            (success, run) = GA(n, crossover, eval, trap)
+            if (success):
+                runs.append(run)
+            else: 
+                fails +=1
+
+            if fails > 1:
+                break
+        
+        if fails <= 1:
             success_prime = success
             n_prime = n
-            runs.append(run)
-        
-        n = n*2
+        else:
+            n = n*2
+            runs = []
 
 
     if n_prime != 0:
@@ -42,7 +53,7 @@ def experiment(crossover, eval, trap):
             temp_runs = []
             mid = bisection(low,high)
             fail_count = 0
-            for index in range(20):
+            for _ in range(20):
                 (_success, _run) = GA(mid, crossover, eval,trap)
                 temp_runs.append(_run)
 
@@ -59,7 +70,7 @@ def experiment(crossover, eval, trap):
                 runs = temp_runs
                 temp_runs = []
     else:
-        return (n_prime, None)
+        return (n_prime, [])
 
     return (n_prime, runs)
 
@@ -74,12 +85,14 @@ def GA(n, crossover, eval, trap):
         run.startTimer()
         popu.create_gen()
         run.stopTimer()
-
+        #string heeft 40 
         (current_fitness, opt) = popu.check_optimum()
         if trap:
-            run.fitness_eval_calls +=800
+            #each new generation n parent eval calls and n children eval calls times 10 since we have 10 subfunctions
+            run.fitness_eval_calls += n*2*10
         else:
-            run.fitness_eval_calls += 80
+            #each new generation n parent eval calls and n children eval calls 
+            run.fitness_eval_calls += n*2
 
         run.increment_generations()
 
@@ -131,12 +144,12 @@ def optimize_experiment(crossover, trap = False):
 
 
 if __name__ == "__main__":
-    (data_run, optimizer, flag) = optimize_experiment(uniform_crossover)
-    export_optimizer_to_csv("Optimizer_U_counting_ones", data_run, optimizer)
+    # (data_run, optimizer, flag) = optimize_experiment(uniform_crossover)
+    # export_optimizer_to_csv("Optimizer_U_counting_ones", data_run, optimizer)
 
 
-    (data_run, optimizer, flag) = optimize_experiment(two_point_crossover)
-    export_optimizer_to_csv("Optimizer_T_counting_ones", data_run, optimizer)
+    # (data_run, optimizer, flag) = optimize_experiment(two_point_crossover)
+    # export_optimizer_to_csv("Optimizer_T_counting_ones", data_run, optimizer)
 
     # (n, data) = experiment(uniform_crossover,count_ones, False)
     # filename= "exp_1_U" + str(n)
@@ -145,12 +158,12 @@ if __name__ == "__main__":
     # filename= "exp_1_T" + str(n)
     # export_to_csv(filename, data)
 
-    # (n, data) = experiment(uniform_crossover, DeceptiveTight, False)
-    # filename= "exp_2_U" + str(n)
-    # export_to_csv(filename, data)
-    # (n, data) = experiment(two_point_crossover,DeceptiveTight, False)
-    # filename= "exp_2_T" + str(n)
-    # export_to_csv(filename, data)
+    (n, data) = experiment(uniform_crossover, DeceptiveTight, False)
+    filename= "exp_2_U" + str(n)
+    export_to_csv(filename, data)
+    (n, data) = experiment(two_point_crossover,DeceptiveTight, False)
+    filename= "exp_2_T" + str(n)
+    export_to_csv(filename, data)
 
     # (n, data) = experiment(uniform_crossover,NonDeceptiveTight, False)
     # filename= "exp_3_U" + str(n)
@@ -176,124 +189,3 @@ if __name__ == "__main__":
     
 
 
-
-
-#def experiment(crossover, eval):
-#high, low
-#n' = 0 
-#n = 0
-#runs = []
-#success' = False
-#while(n <= 1280 && !success')
-#    (success, run') =  GA(n, crossover, eval)
-#   if success == true
-#       success' = success
-#       n' = n
-#       runs.append(run')
-#   n = n*2
-#       
-#
-#if n' != 0:
-#   extra check if n' == 10,20 then return (n', run')
-#
-#   high = n'
-#   low = n'/2
-#   bi_number = bisection(low, high)
-#   
-#   tempRun = []
-#   While(bi_number % 10 == 0):
-#       bi_number = bisection(low,high)
-#       fail_count = 0
-#       for _ range(20):
-#               (success,run') = GA (bi_number)
-#               tempRun.append(run')
-#
-#               if(!success):
-#                  fail_count +=1
-#               if(fail_count >1):
-#                   low = bi_number
-#                   tempRun = []
-#                   break
-#               
-#       if(failcount<2):     
-#           n', high = bi_number
-#           runs = tempRun 
-#           
-#    
-#else: 
-#   return (n', None)
-#   
-#return (n', runs)
-#
-#
-
-#def GA(n, crossover, eval)
-#run = Run()
-#previous_fitness = 0 
-#no_improvement = 0
-#popu = GA(n, crossover, eval)
-#
-#while(no_improvement < 5)
-#   run.starttimer
-#   popu.new generation
-#   run.endtimer
-#   (currentfitness, optimum)= popu.optimum 
-#
-#   run.totalEval = popu.eval_calls
-#   run.cpu = popu.gen_time
-#
-#   if(optimum):
-#       return (true, run)  
-#  
-#   if(previous_fitness => currentfitness):
-#       no_improvement+=1
-#    else: 
-#       previous_fitness = currentfitness  
-#
-#   
-#return (False, None)
-
-#def bisection(lb, ub):
-#return int((lb+ub)/2)
-#
-
-
-
-
-#for N in {10, 20, 40, 80, 160, 320, 640, 1280}:
-#   Generate(N)
-#   while x < 5:   
-#       Do fitness on each of the strings in popu
-#       if string fitness == 40
-#           Break: 
-#       if totalfitness == previous totalfitness
-#           x++
-#   if x == 5:
-#       Break: #Fail
-#   if N > 10:
-#       Succesfull then Bisection Search(N)
-#       Return minimal population size
-#   else
-#       return 10
-#R Return Fail""
-#   x = 0
-    #   previous ttotalfitness = 0
-    #       previous totalprevious totalfitness = totalfitnessCalc Fitness of Poppuu, and PIndiviualpppppppppp
-
-
-# 
-
-# middlebound
-# #   if x == 5:
-# #       Break: #Fail
-# #   if N > 10:
-# #       Succesfull then Bisection Search(N)
-# #       Return minimal population sizeB
-# isection Search N,lowhighN/2, NlowNhighNmidNmid()Nmid, Nhighe
-# lselow, Nmid
-# #    for z in 20 range()20_)                                            
-#     #       FAILCOUNTER++
-# #   FailAILCOUNTER = 0
-# #       If FAILCOUNTER == 2
-# #           Break:FAILCOUNTER == 2
-# if x == 5#           

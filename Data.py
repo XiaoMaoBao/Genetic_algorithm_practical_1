@@ -22,6 +22,7 @@ def export_to_csv(name,data):
         with open(name, 'w', newline='') as f:
             writer = csv.writer(f)
             writer.writerow(["generation_number", "fitness_call", "cpu_time"])
+
             for run in data:
                 if run is not None:
                     writer.writerow([run.generations, run.fitness_eval_calls, run.cpu_time])
@@ -38,7 +39,7 @@ def export_optimizer_to_csv(name, data, optimizer):
     try:
         with open(filename, 'w', newline='') as f:
             writer = csv.writer(f)
-            writer.writerow(["generation", "prop", "correction_selection", "error_selection", "schemata_1_count", "schemata_1_avg_fitness", "schemata_1_std", "schemata_0_count", "schemata_0_avg_fitness", "schemata_0_std" ])
+            writer.writerow(["generation", "prop", "correct_selection", "error_selection", "schemata_1_count", "schemata_1_avg_fitness", "schemata_1_std", "schemata_0_count", "schemata_0_avg_fitness", "schemata_0_std" ])
             for opt in optimizer.gens:
                 writer.writerow([index, opt.prop , opt.correct_selection, opt.error_selection, opt.schemata_1_count, opt.schemata_1_avg, opt.schemata_1_std, opt.schemata_2_count, opt.schemata_2_avg, opt.schemata_2_std])
                 index+=1
