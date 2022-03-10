@@ -1,1 +1,2 @@
-generation_number,fitness_call,cpu_time
+generation_number,fitness_call,cpu_time,generation_number_std,fitness_call_std,cpu_time_std
+0,0,0,0,0,0

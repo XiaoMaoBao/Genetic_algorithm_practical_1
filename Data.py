@@ -1,7 +1,9 @@
 from ast import Not
+from audioop import avg
 import csv
 from time import process_time
 import Population
+from statistics import mean,stdev
 
 class Experiment:
     def __init__(self) -> None:
@@ -17,15 +19,46 @@ class Experiment:
         pass
 
 
+
 def export_to_csv(name,data):
+
+
     try:
         with open(name, 'w', newline='') as f:
             writer = csv.writer(f)
-            writer.writerow(["generation_number", "fitness_call", "cpu_time"])
+            writer.writerow(["generation_number", "fitness_call", "cpu_time", "generation_number_std", "fitness_call_std", "cpu_time_std" ])
+            gen_number = []
+            fitness_calls = []
+            cpu_time = []
+
 
             for run in data:
                 if run is not None:
-                    writer.writerow([run.generations, run.fitness_eval_calls, run.cpu_time])
+                    gen_number.append(run.generations)
+                    fitness_calls.append(run.fitness_eval_calls)
+                    cpu_time.append(run.cpu_time)
+                else: 
+                    gen_number.append(0)
+                    fitness_calls.append(0)
+                    cpu_time.append(0)
+
+
+            if len(data) > 0:
+                writer.writerow([mean(gen_number), mean(fitness_calls), mean(cpu_time), stdev(gen_number), stdev(fitness_calls), stdev(cpu_time)])
+            else:
+                writer.writerow([0, 0,0,0,0,0])
+
+            # if(data is not None):
+            #     avg_gen_number= sum(map(lambda x: x.generations,  data))/20
+            #     avg_fitness_calls = sum(map(lambda x: x.fitness_eval_calls,  data)) /20
+            #     avg_cpu_time= sum(map(lambda x: x.cpu_time,  data)) / 20
+            #     writer.writerow([avg_gen_number, avg_fitness_calls, avg_cpu_time])
+            # else: 
+            #      writer.writerow([0,0,0])
+
+            # for run in data:
+            #     if run is not None:
+            #         writer.writerow([run.generations, run.fitness_eval_calls, run.cpu_time])
     except BaseException as e:
         print('BaseException:', name)
     else:
